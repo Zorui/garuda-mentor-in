@@ -10,7 +10,7 @@ const initialLoad = () => Promise.all([apis.getClassrooms()]);
 
 export default function ClassroomCarousel() {
   const [classrooms, setClassrooms] = useState(undefined);
-  const [fState] = useAsyncFetch(initialLoad, (rsp) => setClassrooms(rsp[0]));
+  const [fState] = useAsyncFetch(initialLoad, (rsp) => setClassrooms(rsp[0]), (err) => console.log('fetch err: ', err));
 
   return (
     <>
