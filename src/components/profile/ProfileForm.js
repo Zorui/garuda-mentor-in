@@ -42,7 +42,7 @@ export default function ProfileForm() {
             <Row>
               <Col sm={12}>
                 <TextInput
-                  label="Job Position"
+                  label="Job Title"
                   onChange={formik.handleChange}
                   value={formik.values.job_position}
                 />
