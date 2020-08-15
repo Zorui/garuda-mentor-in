@@ -13,23 +13,26 @@ export default function ClassroomList() {
   const [classrooms, setClassrooms] = useState(undefined);
   const [filteredClass, setFilteredClass] = useState(undefined);
   const [cat, setCat] = useState('All');
-  
+
   const initialLoad = () => Promise.all([apis.getClassrooms()]);
-    
+
   const [fState] = useAsyncFetch(
     initialLoad,
     (rsp) => setClassrooms(rsp[0]),
     (err) => console.log('fetch err: ', err)
   );
 
-  // const [fState] = useAsyncFetch(initialLoad, (rsp) => {setClassrooms(rsp[0]);setFilteredClass(rsp[0]);});
-
-  console.log(classrooms);
+  function filterClassroom() {
+    if (cat === 'All') {
+      setFilteredClass(classrooms);
+      return;
+    }
+    setFilteredClass(classrooms.filter((classro) => classro.category === cat));
+  }
 
   useEffect(() => {
-    if (cat === 'All') {setFilteredClass(classrooms); console.log(filteredClass); return}
-    setFilteredClass(classrooms.filter((classro) => classro.category == cat));
-  }, [cat]);
+    filterClassroom();
+  }, [fState, cat]);
 
   return (
     <div className={styles.container}>
@@ -38,7 +41,7 @@ export default function ClassroomList() {
         <Button
           variant="dark"
           style={{ margin: '0 0.5rem' }}
-          disabled={fState == State.FState.loading ? true : false}
+          disabled={fState === State.FState.loading ? true : false}
           onClick={() => setCat('All')}
         >
           All Category
@@ -46,7 +49,7 @@ export default function ClassroomList() {
         <Button
           variant="dark"
           style={{ margin: '0 0.5rem' }}
-          disabled={fState == State.FState.loading ? true : false}
+          disabled={fState === State.FState.loading ? true : false}
           onClick={() => setCat('Design')}
         >
           Design
@@ -54,7 +57,7 @@ export default function ClassroomList() {
         <Button
           variant="dark"
           style={{ margin: '0 0.5rem' }}
-          disabled={fState == State.FState.loading ? true : false}
+          disabled={fState === State.FState.loading ? true : false}
           onClick={() => setCat('Business')}
         >
           Business
@@ -62,24 +65,16 @@ export default function ClassroomList() {
         <Button
           variant="dark"
           style={{ margin: '0 0.5rem' }}
-          disabled={fState == State.FState.loading ? true : false}
+          disabled={fState === State.FState.loading ? true : false}
           onClick={() => setCat('Technology')}
         >
           Technology
         </Button>
       </div>
 
-      {/* <Row> */}
-      {/* {classrooms &&
-            classrooms.map((classroom) => (
-              <Col xs={6} md={3}>
-                <ClassroomCard key={classroom.id} classroom={classroom} />
-              </Col>
-            ))} */}
-      {/* </Row> */}
-
       <Container state={fState}>
         <CarouselMultipleItems>
+          {console.log('filteredClass', filteredClass)}
           {filteredClass &&
             filteredClass.map((classroom) => (
               <ClassroomCard key={classroom.id} classroom={classroom} />

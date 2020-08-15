@@ -1,10 +1,13 @@
 import React from 'react';
 import { css } from 'emotion';
+import { useHistory } from 'react-router-dom';
 import { Card, Row, Col, Button, Badge } from 'react-bootstrap';
 
 import { CalendarIcon, LevelIcon } from '../../assets/svg';
 
 export default function ClassroomCard({ classroom }) {
+  const history = useHistory();
+
   return (
     <Card
       style={{ width: '15rem', margin: '1rem .25rem', display: 'inline-block' }}
@@ -25,21 +28,26 @@ export default function ClassroomCard({ classroom }) {
       </Badge>
       <Card.Img style={{ height: '125px' }} variant="top" src={classroom.img} />
       <Card.Body>
-        <Card.Title style={{ fontSize: '1rem' }}>{classroom.title}</Card.Title>
+        <Card.Title style={{ fontSize: '1rem' }}>{classroom.name}</Card.Title>
         <div className={styles.infoContainer}>
           <Row style={{ alignItems: 'center' }}>
             <Col md={12}>
               <CalendarIcon />
-              <span className={styles.label}>asdf</span>
+              <span className={styles.label}>{classroom.start_time}</span>
             </Col>
           </Row>
           <Row style={{ alignItems: 'center' }}>
             <Col md={6} style={{ alignItems: 'center' }}>
               <LevelIcon />
-              <span className={styles.label}>asdfasdf</span>
+              <span className={styles.label}>{classroom.level}</span>
             </Col>
             <Col md={6}>
-              <Button variant="danger">Register</Button>
+              <Button
+                variant="danger"
+                onClick={() => history.push(`/classrooms/${classroom.id}`)}
+              >
+                Register
+              </Button>
             </Col>
           </Row>
         </div>

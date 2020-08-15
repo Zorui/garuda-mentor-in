@@ -7,7 +7,7 @@ import { UserContext } from '../context/UserContext';
 
 export function Top({ children }) {
   let [logState, setLogState] = useContext(UserContext);
-  console.log("nav context",logState);
+  console.log('nav context', logState);
 
   return (
     <>
@@ -46,7 +46,10 @@ export function Top({ children }) {
           </NavLink>
           {logState ? (
             <>
-              <NavLink to="/createclass" className={styles.navbar_create_class}>
+              <NavLink
+                to="/classrooms/create"
+                className={styles.navbar_create_class}
+              >
                 + Create Class
               </NavLink>
               <NavBarIconButton />
@@ -195,7 +198,7 @@ const styles = {
     &:focus {
       outline: none;
     }
-  `
+  `,
 };
 
 export default { Top };
