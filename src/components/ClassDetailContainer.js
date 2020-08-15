@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { css } from 'emotion';
 import { Button } from 'react-bootstrap';
+import moment from 'moment';
+
 import { MentorCard } from '../components/elements';
-import useAsyncFetch from '../hooks/useAsyncFetch';
 import {
   PriceIcon,
   WebinarIcon,
@@ -11,25 +12,17 @@ import {
   LevelIcon,
 } from '../assets/svg';
 
-import * as apis from '../apis/classroom';
 
-export default function ClassDetailContainer({ id }) {
-  const [classData, setClassData] = useState(undefined);
-  const [fState] = useAsyncFetch(()=>apis.getClassroomDetail(id), (rsp) => {
-    setClassData(rsp);
-  });
-
-  console.log('classData', classData);
-  console.log('received id:', id);
-
-
-  return (
+export default function ClassDetailContainer({ desc, mentorName, expertise, cap, level, startDate, endDate, link}) {
+    let sD = moment(startDate).format('DD MMMM YYYY, hh:mm');
+    let eD = moment(endDate).format('DD MMMM YYYY, hh:mm');
+return (
     <>
       <div className={styles.container}>
         <div className={styles.desc}>
-          <p>Desc</p>
+          <p>{desc}</p>
           <Button variant="danger">Register</Button>
-          <MentorCard name="Vincent Hu" expertise="ML AI Learning" />
+          <MentorCard name={mentorName} expertise={expertise} />
           <Button variant="danger" className={styles.goto}>
             Go to Profile
           </Button>
@@ -38,11 +31,11 @@ export default function ClassDetailContainer({ id }) {
           <div className={styles.detaildesc}>
             <div>
               <UserIcon size="36" />
-              <span>Cap</span>
+              <span>{cap}</span>
             </div>
             <div>
               <LevelIcon size="36" />
-              <span>Beginner</span>
+              <span>{level}</span>
             </div>
             <div>
               <PriceIcon size="36" />
@@ -51,14 +44,13 @@ export default function ClassDetailContainer({ id }) {
             <div>
               <CalendarIcon size="36" />
               <span>
-                6 August 2020
-                <br />
-                (16.00: 18.00) WIB
+                {sD}-
+                {eD}
               </span>
             </div>
             <div>
               <WebinarIcon size="36" />
-              <span>Zoom Link</span>
+              <span>{link}</span>
             </div>
           </div>
         </div>
@@ -89,6 +81,7 @@ const styles = {
     max-width: 20rem;
     flex-direction: column;
     justify-content: space-between;
+    align-items: flex-start;
     border: 2px solid #000;
     padding: 1.8rem;
   `,

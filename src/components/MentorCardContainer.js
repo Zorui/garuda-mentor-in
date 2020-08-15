@@ -13,15 +13,7 @@ const MentorCardContainer = ({ state = 2 }) => {
     (rsp) => setMentors(rsp),
     (err) => console.log('fetch err: ', err)
   );
-  //   const {fState} = State;
-
-  //   const arr = [
-  //     { id: 1, name: 'Denny Santoso', expertise: 'Digital Marketing' },
-  //     { id: 2, name: 'Menti Mantis', expertise: 'Manual Marketing' },
-  //     { id: 3, name: 'Vincent Hu', expertise: 'UI/UX Designer' },
-  //     { id: 4, name: 'Kintan Medan', expertise: 'Culinary' },
-  //   ];
-  console.log("mentors: ", mentors);
+  
   return (
     <>
       <Header title="Meet the mentors" />

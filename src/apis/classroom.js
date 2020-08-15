@@ -6,7 +6,7 @@ export function getClassrooms() {
   return rsp.json();
 }
 
-export function getClassroomDetail({id}) {
+export function getClassroomDetail(id) {
   const rsp = api.get(`events/${id}`);
   return rsp.json();
 }

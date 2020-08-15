@@ -26,14 +26,14 @@ export default function JumbotronHome() {
   );
 }
 
-export function JumbotronClassDetail({ mentorName, className, classCat }) {
+export function JumbotronClassDetail({mentorName, className, classCat}) {
   return (
     <Jumbotron fluid className={styles.jumbotronClass}>
       <div className={styles.classDetailContainer}>
         <div className={styles.details}>
           <p className={styles.mentorP}>{mentorName} teaches</p>
-          <p className={styles.titleP}>{className} Intro Class Machine Learning Program ProgrammmMMMMMMMMMMMMMM</p>
-          <p className={styles.cat}>{classCat}Technology</p>
+          <p className={styles.titleP}>{className}</p>
+          <p className={styles.cat}>{classCat}</p>
         </div>
         <div className={styles.classImg}>
           <div className={styles.img}></div>
@@ -71,6 +71,7 @@ const styles = {
     font-size: 1.8rem;
     margin: 0 0 0.3rem 0;
     color: white;
+    text-transform: uppercase;
   `,
   cat: css`
     background-color: gray;

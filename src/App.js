@@ -10,6 +10,9 @@ import ExploreClassScreen from './screens/ExploreClassScreen';
 import EditProfileScreen from './screens/profile/EditProfileScreen';
 import ViewProfileScreen from './screens/profile/ViewProfileScreen';
 import ClassDetailScreen from './screens/ClassDetailScreen';
+import MyClassScreen from './screens/MyClassScreen';
+import JoinCommunityScreen from './screens/JoinCommunityScreen';
+import PartnersScreen from './screens/PartnersScreen';
 
 function App() {
   let [logState, setLogState] = useContext(UserContext);
@@ -20,6 +23,8 @@ function App() {
         <Route exact path="/" component={HomeScreen} />
         <Route exact path="/classrooms" component={ExploreClassScreen} />
         <Route exact path="/classrooms/:id" component={ClassDetailScreen} />
+        <Route exact path="/joincommunity" component={JoinCommunityScreen} />
+        <Route exact path="/partners" component={PartnersScreen}/>
         {logState && (
           <>
             <Route
@@ -29,6 +34,7 @@ function App() {
             />
             <Route exact path="/profile" component={ViewProfileScreen} />
             <Route exact path="/profile/edit" component={EditProfileScreen} />
+            <Route exact path="/myclass" component={MyClassScreen}/>
           </>
         )}
       </Navigation.Top>
