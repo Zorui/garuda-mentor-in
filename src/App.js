@@ -5,6 +5,7 @@ import HomeScreen from './screens/HomeScreen';
 import CreateClassForm from './components/CreateClassForm';
 import Navigation from './components/Navigation';
 import { UserContext } from './context/UserContext';
+import EditProfileScreen from './screens/EditProfileScreen';
 
 function App() {
   let [logState, setLogState] = useContext(UserContext);
@@ -13,7 +14,10 @@ function App() {
       <Navigation.Top>
         <Route exact path="/" component={HomeScreen} />
         {logState && (
-          <Route exact path="/createclass" component={CreateClassForm} />
+          <>
+            <Route exact path="/createclass" component={CreateClassForm} />
+            <Route exact path="/profile/edit" component={EditProfileScreen} />
+          </>
         )}
       </Navigation.Top>
     </Router>

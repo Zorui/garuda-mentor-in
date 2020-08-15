@@ -1,3 +1,5 @@
-import DescriptionText from './DescriptionText';
+import DescriptionInput from './DescriptionInput';
+import SelectInput from './SelectInput';
+import TextInput from './TextInput';
 
-export { DescriptionText };
+export { DescriptionInput, SelectInput, TextInput };
