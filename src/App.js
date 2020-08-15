@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import HomeScreen from './screens/HomeScreen';
+import CreateClassForm from './components/CreateClassForm';
+import Navigation from './components/Navigation';
+import { UserContext } from './context/UserContext';
 
 function App() {
+  let [logState, setLogState] = useContext(UserContext);
   return (
     <Router>
-      <Switch>
+      <Navigation.Top>
         <Route exact path="/" component={HomeScreen} />
-      </Switch>
+        {logState && (
+          <Route exact path="/createclass" component={CreateClassForm} />
+        )}
+      </Navigation.Top>
     </Router>
   );
 }
