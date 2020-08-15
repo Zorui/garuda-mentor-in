@@ -1,7 +1,7 @@
 import ky from 'ky';
 
 const api = ky.create({
-  prefixUrl: 'http://localhost:8080/api/v1',
+  prefixUrl: 'http://192.168.137.30:8080/api/v1',
   headers: {
     accept: 'application/json',
     'content-type': 'application/json',
