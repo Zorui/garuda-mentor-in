@@ -1,28 +1,34 @@
 import api from '../helpers/api';
+import moment from 'moment';
 
 export function getClassrooms() {
   const rsp = api.get('events');
-
-  console.log("getClassRoomApi: ", rsp);
   return rsp.json();
 }
 
-export function getClassroomDetail() {}
+export function getClassroomDetail({id}) {
+  const rsp = api.get(`events/${id}`);
+  return rsp.json();
+}
 
-export function createClassroom(payload) {
-  console.log("payload:", payload);
-  const formData = new FormData();
-  formData.append('name', payload.classname);
-  formData.append('description', payload.classdesc);
-  formData.append('category', payload.classcat);
-  formData.append('start_time', payload.classdt);
-  formData.append('end_time', payload.classdur);
-  formData.append('level', payload.classlod);
-  formData.append('link', payload.classlink);
-  formData.append('event_type', "class");
-  console.log("formData:",formData);
-  api.post("http://192.168.137.30:8080/api/v1/events", {
-    json: formData,
+export function createClassroom({ classdur, ...payload }) {
+  var endDate = moment(payload.classdt);
+  endDate = endDate.add(classdur, 'minutes').format('YYYY-MM-DDTHH:mm:ss');
+
+  var temp = {
+    name: payload.classname,
+    user_id: '3',
+    description: payload.classdesc,
+    category: payload.classcat,
+    start_time: payload.classdt,
+    end_time: endDate,
+    capacity: payload.cap,
+    level: payload.classlod,
+    link: payload.classlink,
+  };
+
+  api.post('events', {
+    json: temp,
   });
 }
 
