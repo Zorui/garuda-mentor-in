@@ -32,7 +32,7 @@ function App() {
               path="/classrooms/create"
               component={CreateClassForm}
             />
-            <Route exact path="/profile" component={ViewProfileScreen} />
+            <Route exact path="/profile/:id" component={ViewProfileScreen} />
             <Route exact path="/profile/edit" component={EditProfileScreen} />
             <Route exact path="/myclass" component={MyClassScreen}/>
           </>

@@ -1,29 +1,12 @@
 import React from 'react';
 import { css, cx } from 'emotion';
-import { useFormik } from 'formik';
 import { Row, Col, Button } from 'react-bootstrap';
 
-import { Container } from '../elements';
 import { SelectInput, TextInput, DescriptionInput } from '../elements/Inputs';
 
-export default function ProfileForm() {
-  const formik = useFormik({
-    initialValues: {
-      fullname: '',
-      job_position: '',
-      expertises: [],
-      summary: '',
-    },
-    onSubmit: handleSubmit,
-  });
-
-  function handleSubmit(values) {
-    console.log('submit values', values);
-    // submit form
-  }
-
+export default function ProfileForm({ myProfile, formik }) {
   return (
-    <Container style={styles.container}>
+    <div className={styles.container}>
       <form onSubmit={formik.handleSubmit}>
         <Row>
           <Col md={6} sm={12}>
@@ -33,18 +16,22 @@ export default function ProfileForm() {
             <Row>
               <Col sm={12}>
                 <TextInput
+                  name="fullname"
                   label="Fullname"
                   onChange={formik.handleChange}
                   value={formik.values.fullname}
+                  disabled={formik.isSubmitting}
                 />
               </Col>
             </Row>
             <Row>
               <Col sm={12}>
                 <TextInput
+                  name="job_position"
                   label="Job Title"
                   onChange={formik.handleChange}
                   value={formik.values.job_position}
+                  disabled={formik.isSubmitting}
                 />
               </Col>
             </Row>
@@ -78,13 +65,18 @@ export default function ProfileForm() {
         </Row>
         <Row className="mt-5">
           <Col sm={12}>
-            <Button variant="danger" size="lg" type="submit">
-              Save
+            <Button
+              variant="danger"
+              size="lg"
+              type="submit"
+              disabled={formik.isSubmitting}
+            >
+              {formik.isSubmitting ? 'Loading...' : 'Save'}
             </Button>
           </Col>
         </Row>
       </form>
-    </Container>
+    </div>
   );
 }
 
