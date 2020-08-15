@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactQuill from 'react-quill';
 import { css } from 'emotion';
 import 'react-quill/dist/quill.snow.css';

@@ -7,13 +7,12 @@ export default function CustomSelect(props) {
   const { setFieldValue, setFieldTouched } = formik;
 
   const handleChange = (value) => {
-    setFieldValue(name, value)
-    console.log(name, value)
+    setFieldValue(name, JSON.stringify(value));
   };
 
   const handleBlur = () => {
-    setFieldTouched(true)
-  }
+    setFieldTouched(true);
+  };
 
   return (
     <div className={styles.inputContainer}>
@@ -24,6 +23,7 @@ export default function CustomSelect(props) {
         onChange={handleChange}
         onBlur={handleBlur}
         {...otherProps}
+        isDisabled={formik.isSubmitting}
       />
     </div>
   );

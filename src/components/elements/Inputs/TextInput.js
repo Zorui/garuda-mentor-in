@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from 'emotion';
 
-export default function TextInput({ name, label, onChange, value }) {
+export default function TextInput({ name, label, onChange, value, disabled }) {
   return (
     <div className={styles.inputContainer}>
       <label className={styles.label}>{label}</label>
@@ -12,6 +12,7 @@ export default function TextInput({ name, label, onChange, value }) {
         onChange={onChange}
         value={value}
         className={styles.input}
+        disabled={disabled}
       />
     </div>
   );
@@ -26,6 +27,5 @@ const styles = {
   label: css`
     text-align: left;
   `,
-  input: css`
-  `,
+  input: css``,
 };

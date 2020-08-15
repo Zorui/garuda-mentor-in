@@ -8,7 +8,7 @@ import useAsyncFetch from '../../hooks/useAsyncFetch';
 export default function ReviewList() {
   const [reviews, setReviews] = useState(undefined);
   const initialLoad = () => Promise.all([apis.getReviewList()]);
-  const [fState] = useAsyncFetch(initialLoad, (rsp) => setReviews(rsp));
+  const [fState] = useAsyncFetch(initialLoad, (rsp) => setReviews(rsp[0]));
 
   return (
     <Container state={fState}>

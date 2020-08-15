@@ -74,7 +74,6 @@ export default function ClassroomList() {
 
       <Container state={fState}>
         <CarouselMultipleItems>
-          {console.log('filteredClass', filteredClass)}
           {filteredClass &&
             filteredClass.map((classroom) => (
               <ClassroomCard key={classroom.id} classroom={classroom} />

@@ -1,27 +1,41 @@
 import React, { useState } from 'react';
 import { Nav } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
+import { css, cx } from 'emotion';
 
-import { Header, Container } from '../../components/elements';
+import {
+  Header,
+  Container,
+  CarouselMultipleItems,
+} from '../../components/elements';
+import { ClassroomCard } from '../../components/classroom';
 import { ProfileCard } from '../../components/profile';
 import { ReviewList } from '../../components/review';
+import useAsyncFetch from '../../hooks/useAsyncFetch';
+import * as apis from '../../apis/profile';
 
-function renderTab(eventKey) {
+function renderTab(eventKey, profile) {
   switch (eventKey) {
     case 'link-2':
       return <ReviewTab />;
     case 'link-3':
-      return <ClassroomTab />;
+      return <ClassroomTab classrooms={profile.events} />;
     default:
-      return <ProfileTab />;
+      return <ProfileTab summary={profile.about_me} />;
   }
 }
 
-function ProfileNav() {
+function ProfileNav({ profile }) {
   const [selectedTab, setSelectedTab] = useState('link-1');
 
   return (
     <>
-      <Nav fill variant="tabs" defaultActiveKey="link-1">
+      <Nav
+        style={{ marginBottom: '1.5rem' }}
+        fill
+        variant="tabs"
+        defaultActiveKey="link-1"
+      >
         <Nav.Item>
           <Nav.Link
             eventKey="link-1"
@@ -47,7 +61,7 @@ function ProfileNav() {
           </Nav.Link>
         </Nav.Item>
       </Nav>
-      {renderTab(selectedTab)}
+      {renderTab(selectedTab, profile)}
     </>
   );
 }
@@ -55,7 +69,10 @@ function ProfileNav() {
 function ProfileTab({ summary }) {
   return (
     <>
-      <div dangerouslySetInnerHTML={summary} />
+      <div
+        className={styles.profileSummary}
+        dangerouslySetInnerHTML={{ __html: summary }}
+      />
     </>
   );
 }
@@ -68,18 +85,38 @@ function ReviewTab() {
   );
 }
 
-function ClassroomTab() {
-  return <>Classroom Tab</>;
+function ClassroomTab({ classrooms }) {
+  return (
+    <>
+      <CarouselMultipleItems>
+        {classrooms &&
+          classrooms.map((classroom) => (
+            <ClassroomCard key={classroom.id} classroom={classroom} />
+          ))}
+      </CarouselMultipleItems>
+    </>
+  );
 }
 
 export default function ProfileScreen() {
+  const params = useParams();
+  const [profile, setProfile] = useState(undefined);
+  const initialLoad = () => Promise.all([apis.getProfile(params.id)]);
+  const [fState] = useAsyncFetch(initialLoad, (rsp) => setProfile(rsp[0]));
+
   return (
     <>
       <Header title="Profile Detail" />
-      <Container>
-        <ProfileCard />
-        <ProfileNav />
+      <Container state={fState}>
+        <ProfileCard profile={profile} />
+        <ProfileNav profile={profile} />
       </Container>
     </>
   );
 }
+
+const styles = {
+  profileSummary: css`
+    text-align: left;
+  `,
+};
