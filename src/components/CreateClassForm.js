@@ -5,7 +5,6 @@ import * as Apis from '../apis/classroom';
 
 //"id":1,"name":"sint","description":"Ab voluptatem velit. Non similique eos.","category":"Business","start_time":"2020-08-30T08:54:45.000Z","end_time":"2020-08-25T08:27:03.000Z","level":"Median","link":"http://example.com/rudy","event_type":"Class",
 
-
 const CreateClassForm = () => {
   const formik = useFormik({
     initialValues: {
@@ -18,11 +17,11 @@ const CreateClassForm = () => {
       classcap: '',
       classlink: '',
     },
-    onSubmit: () =>{
+    onSubmit: () => {
       console.log(formik);
       Apis.createClassroom(formik.values);
     },
-    onReset: () =>{},
+    onReset: () => {},
   });
 
   console.log('Form values', formik);
@@ -49,7 +48,7 @@ const CreateClassForm = () => {
           onChange={formik.handleChange}
           value={formik.values.classdesc}
         />
-        <label htmlFor="classcat">Category</label>
+        <label>Category</label>
         <input
           type="text"
           id="classcat"
@@ -57,17 +56,18 @@ const CreateClassForm = () => {
           onChange={formik.handleChange}
           value={formik.values.classcat}
         />
-        <label>Duration</label>
+        <label>Duration (mins)</label>
         <input
-          type="date"
+          type="number"
           id="classdur"
           name="classdur"
+          min="10"
           onChange={formik.handleChange}
           value={formik.values.classdur}
         />
         <label>Date {'&'} Time</label>
         <input
-          type="datetime"
+          type="datetime-local"
           id="classdt"
           name="classdt"
           onChange={formik.handleChange}
@@ -98,6 +98,7 @@ const CreateClassForm = () => {
           onChange={formik.handleChange}
           value={formik.values.classlink}
         />
+        <br></br>
         <input type="submit" value="Submit"></input>
       </form>
     </div>
@@ -109,7 +110,7 @@ export default CreateClassForm;
 const styles = {
   formContainer: css`
     width: 60%;
-    margin: 0 20%;
+    margin: 6rem 20%;
   `,
   form: css`
     display: flex;

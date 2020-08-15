@@ -1,17 +1,17 @@
 import React from 'react';
-
-import {JumbotronClassDetail, CommonFooter} from '../components/elements';
+import { JumbotronClassDetail, CommonFooter } from '../components/elements';
 import ClassDetailContainer from '../components/ClassDetailContainer';
-
+import { useParams } from 'react-router-dom';
 
 const ClassDetailScreen = () => {
-    return(
-        <>
-            <JumbotronClassDetail/>
-            <ClassDetailContainer/>
-            <CommonFooter/>
-        </>
-    );
-}
+  let { id } = useParams();
+  return (
+    <>
+      <JumbotronClassDetail />
+      <ClassDetailContainer id={id} />
+      <CommonFooter />
+    </>
+  );
+};
 
 export default ClassDetailScreen;

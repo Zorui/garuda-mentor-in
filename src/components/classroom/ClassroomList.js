@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 
 import { Container, Header } from '../elements';
@@ -10,8 +10,6 @@ import State from '../../constants/State';
 import { CarouselMultipleItems } from '../elements';
 
 export default function ClassroomList() {
-
-
   const [classrooms, setClassrooms] = useState(undefined);
   const [filteredClass, setFilteredClass] = useState(undefined);
   const [cat, setCat] = useState('All');
