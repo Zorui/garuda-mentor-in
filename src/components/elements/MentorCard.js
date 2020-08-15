@@ -1,15 +1,17 @@
 import React from 'react';
 import { css, cx } from 'emotion';
 
-const MentorCard = ({name, expertise}) => {
+const MentorCard = ({ name, expertise }) => {
   return (
-    <div className={cx(styles.mentor_card)}>
-      <div className={cx(styles.mentor_img)}></div>
-      <div className={cx(styles.mentor_desc)}>
-        <p className={cx(styles.mentor_name)}>{name}</p>
-        <p className={cx(styles.mentor_expertise)}>{expertise}</p>
+    <>
+      <div className={cx(styles.mentor_card)}>
+        <div className={cx(styles.mentor_img)}></div>
+        <div className={cx(styles.mentor_desc)}>
+          <p className={cx(styles.mentor_name)}>{name}</p>
+          <p className={cx(styles.mentor_expertise)}>{expertise}</p>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

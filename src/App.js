@@ -7,6 +7,7 @@ import CreateClassForm from './components/CreateClassForm';
 import Navigation from './components/Navigation';
 import { UserContext } from './context/UserContext';
 import EditProfileScreen from './screens/EditProfileScreen';
+import ClassDetailScreen from './screens/ClassDetailScreen';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Navigation.Top>
         <Route exact path="/" component={HomeScreen} />
         <Route exact path="/classrooms" component={ExploreClassScreen}/>
+        <Route exact path="/class" component={ClassDetailScreen}/> 
         {logState && (
           <>
             <Route exact path="/createclass" component={CreateClassForm} />
