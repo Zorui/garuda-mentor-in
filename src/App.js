@@ -11,18 +11,22 @@ import EditProfileScreen from './screens/profile/EditProfileScreen';
 import ViewProfileScreen from './screens/profile/ViewProfileScreen';
 import ClassDetailScreen from './screens/ClassDetailScreen';
 
-
 function App() {
   let [logState, setLogState] = useContext(UserContext);
+
   return (
     <Router>
       <Navigation.Top>
         <Route exact path="/" component={HomeScreen} />
-        <Route exact path="/classrooms" component={ExploreClassScreen}/>
-        <Route exact path="/class" component={ClassDetailScreen}/> 
+        <Route exact path="/classrooms" component={ExploreClassScreen} />
+        <Route exact path="/classrooms/:id" component={ClassDetailScreen} />
         {logState && (
           <>
-            <Route exact path="/createclass" component={CreateClassForm} />
+            <Route
+              exact
+              path="/classrooms/create"
+              component={CreateClassForm}
+            />
             <Route exact path="/profile" component={ViewProfileScreen} />
             <Route exact path="/profile/edit" component={EditProfileScreen} />
           </>
