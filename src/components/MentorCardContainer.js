@@ -21,7 +21,7 @@ const MentorCardContainer = ({ state = 2 }) => {
   //     { id: 3, name: 'Vincent Hu', expertise: 'UI/UX Designer' },
   //     { id: 4, name: 'Kintan Medan', expertise: 'Culinary' },
   //   ];
-
+  console.log("mentors: ", mentors);
   return (
     <>
       <Header title="Meet the mentors" />

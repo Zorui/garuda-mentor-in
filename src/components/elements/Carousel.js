@@ -18,6 +18,23 @@ export default function Carousel({
     ...config,
   };
 
+  return <Slider {...defaultConfig}>{children}</Slider>;
+}
+
+export function CarouselMultipleItems({
+  children,
+  config,
+  itemRenderer = () => null,
+}) {
+  const defaultConfig = {
+    centerMode: true,
+    infinite: false,
+    slidesToShow: 1,
+    speed: 500,
+    rows: 4,
+    slidesPerRow: 4,
+    ...config,
+  };
   return (
     <Slider {...defaultConfig}>
       {children}
