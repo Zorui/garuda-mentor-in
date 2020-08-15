@@ -10,12 +10,22 @@ import State from '../../constants/State';
 import { CarouselMultipleItems } from '../elements';
 
 export default function ClassroomList() {
+
+
   const [classrooms, setClassrooms] = useState(undefined);
   const [filteredClass, setFilteredClass] = useState(undefined);
-  const initialLoad = () => Promise.all([apis.getClassrooms()]);
-  const [fState] = useAsyncFetch(initialLoad, (rsp) => {setClassrooms(rsp[0]);setFilteredClass(rsp[0]);});
-
   const [cat, setCat] = useState('All');
+  
+  const initialLoad = () => Promise.all([apis.getClassrooms()]);
+    
+  const [fState] = useAsyncFetch(
+    initialLoad,
+    (rsp) => setClassrooms(rsp[0]),
+    (err) => console.log('fetch err: ', err)
+  );
+
+  // const [fState] = useAsyncFetch(initialLoad, (rsp) => {setClassrooms(rsp[0]);setFilteredClass(rsp[0]);});
+
   console.log(classrooms);
 
   useEffect(() => {
@@ -24,7 +34,7 @@ export default function ClassroomList() {
   }, [cat]);
 
   return (
-    <>
+    <div className={styles.container}>
       <Header title="Explore our classes that fits your interest" />
       <div className={styles.filterbutton}>
         <Button
@@ -78,7 +88,7 @@ export default function ClassroomList() {
             ))}
         </CarouselMultipleItems>
       </Container>
-    </>
+    </div>
   );
 }
 
@@ -88,5 +98,8 @@ const styles = {
     width: 100%;
     justify-content: center;
     align-items: center;
+  `,
+  container: css`
+    margin-bottom: 3rem;
   `,
 };

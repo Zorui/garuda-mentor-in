@@ -9,6 +9,7 @@ import { UserContext } from './context/UserContext';
 import ExploreClassScreen from './screens/ExploreClassScreen';
 import EditProfileScreen from './screens/profile/EditProfileScreen';
 import ViewProfileScreen from './screens/profile/ViewProfileScreen';
+import ClassDetailScreen from './screens/ClassDetailScreen';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Navigation.Top>
         <Route exact path="/" component={HomeScreen} />
         <Route exact path="/classrooms" component={ExploreClassScreen}/>
+        <Route exact path="/class" component={ClassDetailScreen}/> 
         {logState && (
           <>
             <Route exact path="/createclass" component={CreateClassForm} />

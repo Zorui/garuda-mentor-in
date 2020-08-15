@@ -4,6 +4,8 @@ import { css } from 'emotion';
 import * as Apis from '../apis/classroom';
 
 //"id":1,"name":"sint","description":"Ab voluptatem velit. Non similique eos.","category":"Business","start_time":"2020-08-30T08:54:45.000Z","end_time":"2020-08-25T08:27:03.000Z","level":"Median","link":"http://example.com/rudy","event_type":"Class",
+
+
 const CreateClassForm = () => {
   const formik = useFormik({
     initialValues: {
@@ -65,7 +67,7 @@ const CreateClassForm = () => {
         />
         <label>Date {'&'} Time</label>
         <input
-          type="date"
+          type="datetime"
           id="classdt"
           name="classdt"
           onChange={formik.handleChange}

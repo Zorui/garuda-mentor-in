@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  Jumbotron as JumbotronCustom,
+  JumbotronHome,
   OurVision,
   CommonFooter,
 } from '../components/elements';
@@ -11,7 +11,7 @@ import ClassroomContainer from '../components/classroom/ClassroomCarousel';
 export default function HomeScreen() {
   return (
     <>
-      <JumbotronCustom />
+      <JumbotronHome />
       <ClassroomContainer />
       <MentorCardContainer />
       <OurVision />
