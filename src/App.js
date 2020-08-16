@@ -24,7 +24,8 @@ function App() {
         <Route exact path="/classrooms" component={ExploreClassScreen} />
         <Route exact path="/classrooms/:id" component={ClassDetailScreen} />
         <Route exact path="/joincommunity" component={JoinCommunityScreen} />
-        <Route exact path="/partners" component={PartnersScreen}/>
+        <Route exact path="/partners" component={PartnersScreen} />
+        <Route exact path="/profile/:id" component={ViewProfileScreen} />
         {logState && (
           <>
             <Route
@@ -32,9 +33,8 @@ function App() {
               path="/classrooms/create"
               component={CreateClassForm}
             />
-            <Route exact path="/profile/:id" component={ViewProfileScreen} />
             <Route exact path="/profile/edit" component={EditProfileScreen} />
-            <Route exact path="/myclass" component={MyClassScreen}/>
+            <Route exact path="/myclass" component={MyClassScreen} />
           </>
         )}
       </Navigation.Top>

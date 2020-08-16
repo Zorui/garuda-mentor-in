@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { css } from 'emotion';
 import { Button } from 'react-bootstrap';
 import moment from 'moment';
+import { useHistory } from 'react-router-dom';
+import * as apis from '../apis/appointmentApi';
 
 import { MentorCard } from '../components/elements';
 import {
@@ -12,18 +14,32 @@ import {
   LevelIcon,
 } from '../assets/svg';
 
-
-export default function ClassDetailContainer({ desc, mentorName, expertise, cap, level, startDate, endDate, link}) {
-    let sD = moment(startDate).format('DD MMMM YYYY, hh:mm');
-    let eD = moment(endDate).format('DD MMMM YYYY, hh:mm');
-return (
+export default function ClassDetailContainer({
+  desc,
+  eventId,
+  mentorId,
+  mentorName,
+  expertise,
+  cap,
+  level,
+  startDate,
+  endDate,
+  link,
+}) {
+  let history = useHistory();
+  let sD = moment(startDate).format('DD MMMM YYYY, hh:mm');
+  let eD = moment(endDate).format('DD MMMM YYYY, hh:mm');
+  function goToProfile(mentorId){
+    history.push(`/profile/${mentorId}`);
+  }
+  return (
     <>
       <div className={styles.container}>
         <div className={styles.desc}>
           <p>{desc}</p>
-          <Button variant="danger">Register</Button>
+          <Button variant="danger" onClick={()=>apis.registerToClass(eventId, '4')}>Register</Button>
           <MentorCard name={mentorName} expertise={expertise} />
-          <Button variant="danger" className={styles.goto}>
+          <Button variant="danger" className={styles.goto} onClick={()=>goToProfile(mentorId)}>
             Go to Profile
           </Button>
         </div>
@@ -38,14 +54,13 @@ return (
               <span>{level}</span>
             </div>
             <div>
-              <PriceIcon size="36" />
+              <PriceIcon size="32" />
               <span>Free</span>
             </div>
             <div>
               <CalendarIcon size="36" />
               <span>
-                {sD}-
-                {eD}
+                {sD} - {eD}
               </span>
             </div>
             <div>
@@ -80,9 +95,9 @@ const styles = {
     display: flex;
     max-width: 20rem;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: flex-start;
     border: 2px solid #000;
-    padding: 1.8rem;
+    padding: 0.3rem;
   `,
 };

@@ -14,12 +14,6 @@ export function Top({ children }) {
       <div className={styles.navbar}>
         <NavLink to="/" className={styles.navbar_brand}>
           <img src="/raw/logo.png" className={styles.brand}></img>
-          <div className={styles.brand_desc}>
-            <p className={styles.desch1}>
-              MENTOR<span className={styles.desch2}>.IN</span>
-            </p>
-            <p className={styles.desc}>Mentor Indonesia</p>
-          </div>
         </NavLink>
 
         <input

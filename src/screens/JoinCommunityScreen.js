@@ -6,8 +6,6 @@ export default function JoinCommunityScreen() {
     <>
       <div className={styles.container}>
         <div className={styles.img_thumb}></div>
-      </div>
-      <div className={styles.filler}>
         <div className={styles.fBox}>
           <a
             className={styles.words}
@@ -23,12 +21,12 @@ export default function JoinCommunityScreen() {
 
 const styles = {
   fBox: css`
-    margin: 0 auto;
     position: relative;
     text-align: center;
-    top: 5rem;
-    width: 12rem;
-    padding: 1.2rem;
+    top: -230px;
+    right: -1200px;
+    width: 7rem;
+    padding: 0.2rem;
     background-color: #c85051;
     transition: filter 300ms;
     border-radius: 10px;
@@ -55,14 +53,13 @@ const styles = {
     background-color: gray;
   `,
   words: css`
-    font-size: 4rem;
+    font-size: 2rem;
     font-weight: bold;
-    color: white;
+    color: black;
     text-align: center;
     text-decoration: none;
     &:hover {
       text-decoration: none;
-      color: black;
     }
   `,
 };

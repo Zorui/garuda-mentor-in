@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-
 import * as apis from '../apis/classroom';
 import {
   JumbotronClassDetail,
@@ -18,7 +17,9 @@ const ClassDetailScreen = () => {
     () => apis.getClassroomDetail(id),
     (rsp) => {
       setClassData(rsp);
-    }
+      console.log(rsp);
+    },
+    (err) => console.log(err)
   );
 
   return (
@@ -33,6 +34,8 @@ const ClassDetailScreen = () => {
           <Container state={fState}>
             <ClassDetailContainer
               desc={classData.description}
+              eventId={classData.id}
+              mentorId={classData.user_id}
               mentorName={classData.user.name}
               expertise={classData.user.expertise}
               cap={classData.capacity}
@@ -48,7 +51,5 @@ const ClassDetailScreen = () => {
     </>
   );
 };
-
-
 
 export default ClassDetailScreen;
