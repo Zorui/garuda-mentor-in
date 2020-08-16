@@ -6,15 +6,15 @@ import { CarouselMultipleItems } from '../components/elements/Carousel';
 import ClassroomCard from '../components/classroom/ClassroomCard';
 import useAsyncFetch from '../hooks/useAsyncFetch';
 import { Container } from '../components/elements';
-
-import * as apis from '../apis/appointmentApi';
+import * as appointmentApis from '../apis/appointmentApi';
+import * as classroomApis from '../apis/classroom';
 
 export default function MyClassScreen() {
   let [selectedTab, setSelectedTab] = useState('link-1');
   return (
     <>
       <div className={styles.banner}>
-          <p className={styles.bannerdesc}>My class</p>
+        <p className={styles.bannerdesc}>My class</p>
       </div>
       <Nav variant="tabs" defaultActiveKey="link-1">
         <Nav.Item>
@@ -48,20 +48,20 @@ function renderTab(eventKey) {
 }
 
 function AllClassTab() {
-  const [classRoom, setClassRoom] = useState(undefined);
-  const [getAppointment, setGetAppointment] = useState(undefined);
-  const [fState] = useAsyncFetch(
-    () => apis.getMyClass(4),
-    (rsp) => {
-      setGetAppointment(rsp);
-      console.log(rsp);
-    }
-  );
+  const [appointments, setAppointments] = useState(undefined);
+  const initialLoad = () =>
+    Promise.all([appointmentApis.getMyClass(4), classroomApis.getClassrooms()]);
+  const [fState] = useAsyncFetch(initialLoad, (rsp) => {
+    const myClassrooms = rsp[0].map((classroom) => classroom.id);
+    setAppointments(
+      rsp[1].filter((classroom) => myClassrooms.includes(classroom.id))
+    );
+  });
   return (
     <Container state={fState}>
       <CarouselMultipleItems>
-        {getAppointment &&
-          getAppointment.map((classroom) => (
+        {appointments &&
+          appointments.map((classroom) => (
             <ClassroomCard key={classroom.id} classroom={classroom} />
           ))}
       </CarouselMultipleItems>
@@ -86,5 +86,5 @@ const styles = {
     left: 3rem;
     font-size: 2.3rem;
     font-weight: bold;
-  `
+  `,
 };
