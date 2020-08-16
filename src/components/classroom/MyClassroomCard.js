@@ -1,14 +1,11 @@
 import React from 'react';
 import { css } from 'emotion';
-import { useHistory } from 'react-router-dom';
 import { Card, Row, Col, Button, Badge } from 'react-bootstrap';
 import moment from 'moment';
 
 import { CalendarIcon, LevelIcon } from '../../assets/svg';
 
-export default function ClassroomCard({ classroom }) {
-  const history = useHistory();
-
+export default function MyClassroomCard({ classroom }) {
   return (
     <Card
       style={{ width: '15rem', margin: '1rem .25rem', display: 'inline-block' }}
@@ -34,7 +31,9 @@ export default function ClassroomCard({ classroom }) {
           <Row style={{ alignItems: 'center' }}>
             <Col md={12}>
               <CalendarIcon />
-              <span className={styles.label}>{moment(classroom.start_time).format("YYYY-MM-DD hh:mm")}</span>
+              <span className={styles.label}>
+                {moment(classroom.start_time).format('YYYY-MM-DD hh:mm')}
+              </span>
             </Col>
           </Row>
           <Row style={{ alignItems: 'center' }}>
@@ -43,12 +42,9 @@ export default function ClassroomCard({ classroom }) {
               <span className={styles.label}>{classroom.level}</span>
             </Col>
             <Col md={6}>
-              <Button
-                variant="danger"
-                onClick={() => history.push(`/classrooms/${classroom.id}`)}
-              >
-                Register
-              </Button>
+              <a className="btn btn-danger" href={classroom.link}>
+                Enter
+              </a>
             </Col>
           </Row>
         </div>

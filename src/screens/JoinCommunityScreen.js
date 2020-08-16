@@ -9,7 +9,7 @@ export default function JoinCommunityScreen() {
         <div className={styles.fBox}>
           <a
             className={styles.words}
-            href="https://join.slack.com/t/testing123-1gg8657/shared_invite/zt-g43sqk2q-9P~ibbpjTiAhDpWKe~BAPA"
+            href="https://join.slack.com/t/mentorinworkspace/shared_invite/zt-gmshpegy-BzR~MaGAt~z~7V7luO09vA"
           >
             Join
           </a>

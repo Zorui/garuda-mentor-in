@@ -3,7 +3,7 @@ import { Nav } from 'react-bootstrap';
 import { css } from 'emotion';
 
 import { CarouselMultipleItems } from '../components/elements/Carousel';
-import ClassroomCard from '../components/classroom/ClassroomCard';
+import MyClassroomCard from '../components/classroom/MyClassroomCard';
 import useAsyncFetch from '../hooks/useAsyncFetch';
 import { Container } from '../components/elements';
 import * as appointmentApis from '../apis/appointmentApi';
@@ -62,7 +62,7 @@ function AllClassTab() {
       <CarouselMultipleItems>
         {appointments &&
           appointments.map((classroom) => (
-            <ClassroomCard key={classroom.id} classroom={classroom} />
+            <MyClassroomCard key={classroom.id} classroom={classroom} />
           ))}
       </CarouselMultipleItems>
     </Container>
